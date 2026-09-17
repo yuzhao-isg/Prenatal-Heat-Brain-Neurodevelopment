@@ -1,0 +1,8 @@
+# R workspace and history files
+.Rhistory
+.RData
+.Ruserdata
+.Renviron
+
+# RStudio project-specific user files
+.Rproj.user/
