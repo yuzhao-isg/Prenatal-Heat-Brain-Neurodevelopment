@@ -41,49 +41,61 @@ setwd("~/results/Main_results/")
 results_neurosonography <- read.csv("Neurosonography/all_results.csv")
 results_dp3 <- read.csv("DP3_28m/all_results.csv")
 #---- INDEX ----------------------------------------------------------------      
-# 01) Further adjust for cooling system use
-#     Supplementary Table 6. Adjusteda percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy further adjusting for frequency of cooling system usage during the warm season.  
-#     Supplementary Table 22. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy further adjusting for frequency of cooling system usage during the warm season.
+# 01) Further adjust for cooling system use, housing type, and window frame material
+#     Supplementary Table 13. Adjusteda percent differences in brain morphological structures associated with the number of outdoor heat-exposure days during pregnancy further adjusting separately for frequency of cooling system usage, housing type, and window frame material.  
+#     Supplementary Table 28. Adjusteda difference in postnatal neurodevelopment scores associated with the number of outdoor heat-exposure days during pregnancy further adjusting separately for frequency of cooling system usage, housing type, and window frame material.
 # 
-# 02) Mutual adjust indoor and outdoor heat days: 
-#     Supplementary Table 11. Adjusteda percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy in mutually adjusted models. 
-#     Supplementary Table 30. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy in mutually adjusted models.
+# 02) Mutual adjust indoor and outdoor heat-exposure days: 
+#     Supplementary Table 9. Adjusteda percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy in mutually adjusted models. 
+#     Supplementary Table 24. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy in mutually adjusted models.
 #
-# 03) Indoor heat as a categorical variables - binary 
-#     Supplementary Table 12. Adjusteda percent differences in brain morphological structures associated with categorical cumulative indoor heat-day exposure during pregnancy (0 heat days vs. ≥1 heat days).
-#     Supplementary Table 31. Adjusteda difference in postnatal neurodevelopment score associated with categorical cumulative indoor heat-day exposure during pregnancy (0 heat days vs. ≥1 heat days).
+# 03) Dichotomized indoor heat-exposure days
+#     Supplementary Table 6. Adjusteda percent differences in brain morphological structures associated with categorical cumulative indoor heat-day exposure during pregnancy (0 heat days vs. ≥1 heat days).
+#     Supplementary Table 21. Adjusteda difference in postnatal neurodevelopment score associated with categorical cumulative indoor heat-day exposure during pregnancy (0 heat days vs. ≥1 heat days).
 #
-# 04) Indoor temperature threshold 26℃ 
-#    Supplementary Table 13. Adjusteda percent differences in brain morphological structures associated with the number of indoor heat days based on temperature during pregnancy defined using a 26°C threshold.
-#    Supplementary Table 32. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor heat days during pregnancy based on temperature defined using a 26°C threshold.
+# 04) Outdoor Heat Wave
+#    Supplementary Table 8. Adjusteda percent differences in brain morphological structures associated with the outdoor heatwave days during pregnancy.
+#    Supplementary Table 23. Adjusteda difference in postnatal neurodevelopment score associated with the outdoor heatwave days during pregnancy.
 #
-# 05) Outdoor Heat Wave
-#    Supplementary Table 15. Adjusteda percent differences in brain morphological structures associated with the outdoor heatwave days during pregnancy.
-#    Supplementary Table 34. Adjusteda difference in postnatal neurodevelopment score associated with the outdoor heatwave days during pregnancy.
+# 05) Threshold: Moving window 15day
+#    Supplementary Table 10. Adjusteda percent differences in brain morphological structures associated with the number of outdoor and indoor heat days using 15-day moving-window thresholds.
+#    Supplementary Table 25. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy using 15-day moving-window thresholds.
 #
-# 06) Threshold: Moving window 15day
-#    Supplementary Table 16. Adjusteda percent differences in brain morphological structures associated with the number of outdoor and indoor heat days using 15-day moving-window thresholds.
-#    Supplementary Table 35. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy using 15-day moving-window thresholds.
-#
-# 07) Multiple Test
-#    Supplementary Table 17. Adjusteda percent differences in brain morphological structures associated with the number of outdoor and indoor heat days, adjusting the p-value for multiple comparisons. (A) Outdoor heat exposure; (B) Indoor heat exposure
-#    Supplementary Table 36. Adjusteda difference in postnatal neurodevelopment score associated with the number of outdoor and indoor heat days, adjusting the p-value for multiple comparisons. (A) Outdoor heat exposure; (B) Indoor heat exposure
+# 06) Multiple Test
+#    Supplementary Table 16. Adjusteda percent differences in brain morphological structures associated with the number of outdoor and indoor heat days, adjusting the p-value for multiple comparisons. (A) Outdoor heat exposure; (B) Indoor heat exposure
+#    Supplementary Table 34. Adjusteda difference in postnatal neurodevelopment score associated with the number of outdoor and indoor heat days, adjusting the p-value for multiple comparisons. (A) Outdoor heat exposure; (B) Indoor heat exposure
 
 #---------------------------------------------------------------------------
 
 setwd("~/results/Sensitivity_results/")
 #-----------------------------------------------------------------------------#
-#                    01 Further adjust for cooling system use                 #
+#                    01_1 Further adjust for cooling system use                 #
 #-----------------------------------------------------------------------------#
 load("db/input/questionnaire_meteo_predictors_adjust.RData")
+# ct1 - housing type  ct8g: material of window frames
 AC_use <- questionnaire_meteo_predictors_adjust %>%
   distinct(subject_id, .keep_all = TRUE) %>%
   dplyr::select(subject_id, cooling_system_day, cooling_system_night)
 
+housing_type <- questionnaire_meteo_predictors_adjust %>%
+  distinct(subject_id, .keep_all = TRUE) %>%
+  dplyr::select(subject_id, ct1) %>%
+  rename(housing_type = ct1)
+
+material_window_frame <- questionnaire_meteo_predictors_adjust %>%
+  distinct(subject_id, .keep_all = TRUE) %>%
+  dplyr::select(subject_id, ct8g) %>%
+  rename(material_window_frame = ct8g)
+
 Heat_Neurosonography_mixed <- Heat_Neurosonography_mixed %>%
-  left_join(AC_use, by = c("id_mother" = "subject_id"))
+  left_join(AC_use, by = c("id_mother" = "subject_id")) %>%
+  left_join(housing_type,by = c("id_mother" = "subject_id")) %>%
+  left_join(material_window_frame,by = c("id_mother" = "subject_id")) 
+
 Heat_DP3_28m_mixed <- Heat_DP3_28m_mixed  %>%
-  left_join(AC_use, by = c("id_mother" = "subject_id"))
+  left_join(AC_use, by = c("id_mother" = "subject_id")) %>%
+  left_join(housing_type,by = c("id_mother" = "subject_id")) %>%
+  left_join(material_window_frame,by = c("id_mother" = "subject_id")) 
 
 #######################
 ### 1) Neurosonography ###
@@ -101,7 +113,7 @@ results <- run_mixed_models(
                  "ns(as.numeric(conception_date), df = 12)", "cooling_system_day","cooling_system_night"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_AC_use/",
+  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_Housing/",
   log_transformed_outcome = TRUE)
 
 #######################
@@ -118,13 +130,93 @@ results <- run_mixed_models(
                  "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "cooling_system_day","cooling_system_night"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_AC_use/",
+  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_Housing/",
+  log_transformed_outcome = FALSE)
+################################################################################
+
+#-----------------------------------------------------------------------------#
+#                       01_2 Further adjust for housing type                    #
+#-----------------------------------------------------------------------------#
+#######################
+### 1) Neurosonography ###
+######################
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_HI_exposure_95_home","log2_count_HI_exposure_95_indoor_day",
+                "count_heat_exposure_95_home","log2_count_heat_exposure_95_indoor_day"),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)", "material_window_frame"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_Housing/",
+  log_transformed_outcome = TRUE)
+
+#######################
+### 2)    DP3    ###
+#######################
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_HI_exposure_95_home","log2_count_HI_exposure_95_indoor_day",
+                "count_heat_exposure_95_home","log2_count_heat_exposure_95_indoor_day"),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "material_window_frame"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_Housing/",
+  log_transformed_outcome = FALSE)
+################################################################################
+
+#-----------------------------------------------------------------------------#
+#                      01_3 Further adjust for window material                  #
+#-----------------------------------------------------------------------------#
+#######################
+### 1) Neurosonography ###
+######################
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_HI_exposure_95_home","log2_count_HI_exposure_95_indoor_day",
+                "count_heat_exposure_95_home","log2_count_heat_exposure_95_indoor_day"),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)", "housing_type"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_Housing/",
+  log_transformed_outcome = TRUE)
+
+#######################
+### 2)    DP3    ###
+#######################
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_HI_exposure_95_home","log2_count_HI_exposure_95_indoor_day",
+                "count_heat_exposure_95_home","log2_count_heat_exposure_95_indoor_day"),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "housing_type"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Heat_Neurodevelopment/results/NM_Revise/Adjust_Housing/",
   log_transformed_outcome = FALSE)
 ################################################################################
 
 
 #-----------------------------------------------------------------------------#
-#                 02 Mutual adjust indoor and outdoor heat days               #
+#                 02 Mutual adjust indoor and outdoor heat-exposure days               #
 #-----------------------------------------------------------------------------#
 #######################
 ### 1) Neurosonography ###
@@ -183,7 +275,7 @@ results <- run_mixed_models(
 
 
 #-----------------------------------------------------------------------------#
-#                03 Indoor heat as a categorical variables - binary           #
+#                    03 Dichotomized indoor heat-exposure days                #
 #-----------------------------------------------------------------------------#
 fit_binary_lmm <- function(
     data,
@@ -363,91 +455,7 @@ dp3_results <- run_binary_analysis(
 
 
 #-----------------------------------------------------------------------------#
-#                      04 Indoor temperature threshold 26℃                   #
-#-----------------------------------------------------------------------------#
-# defined the 26℃ threshold
-Indoor_threshold_warm <- temp_hr_HI_bisc %>%
-  mutate(date = as.Date(date),
-         month_day = format(date, "%m-%d"),
-         season_2 = case_when(
-           month_day >= "05-15" & month_day <= "10-15" ~ "warm_season",
-           TRUE ~ "cool_season")) %>%
-  mutate(indoor_26_warm = ifelse(season_2 == "warm_season", indoor_26, 0))
-
-Indoor_threshold_warm_ultra <- temp_hr_HI_bisc_ultrasound %>%
-  mutate(date = as.Date(date),
-         month_day = format(date, "%m-%d"),
-         season_2 = case_when(
-           month_day >= "05-15" & month_day <= "10-15" ~ "warm_season",
-           TRUE ~ "cool_season")) %>%
-  mutate(indoor_26_warm = ifelse(season_2 == "warm_season", indoor_26, 0))
-
-selected_vars <- c("indoor_26_warm")
-indoor_count_heat_new <- Indoor_threshold_warm %>%
-  group_by(id_mother) %>%
-  summarise(across(all_of(selected_vars), ~ sum(. == 1, na.rm = TRUE), .names = "count_{.col}"), .groups = "drop") %>%
-  mutate(across(
-    .cols = -c(id_mother), 
-    .fns = ~ .x / 10
-  ))
-indoor_count_heat_new_ultra <- Indoor_threshold_warm_ultra %>%
-  group_by(id_mother) %>%
-  summarise(across(all_of(selected_vars), ~ sum(. == 1, na.rm = TRUE), .names = "count_{.col}"), .groups = "drop") %>%
-  mutate(across(
-    .cols = -c(id_mother), 
-    .fns = ~ .x / 10
-  ))
-
-#######################
-### 1) Neurosonography ###
-#######################
-
-Heat_Neurosonography_mixed <- Heat_Neurosonography_mixed %>%
-  left_join(indoor_count_heat_new_ultra, by = "id_mother")
-
-results <- run_mixed_models(
-  data = Heat_Neurosonography_mixed,
-  exposures = c("count_indoor_24","count_indoor_26",
-                "count_indoor_24_warm","count_indoor_26_warm",
-                "count_indoor_HI_26.7_warm"),
-  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
-               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
-               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
-               "log_cingulate_sulcus", "log_insula"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
-                 "ns(as.numeric(conception_date), df = 12)"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "Neurosonography/RV1_sensitivity/04_indoor_26℃",
-  log_transformed_outcome = TRUE)
-
-#######################
-### 2)    DP3    ###
-#######################
-Heat_DP3_28m_mixed <- Heat_DP3_28m_mixed %>%
-  left_join(indoor_count_heat_new, by = "id_mother")
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_indoor_24","count_indoor_26",
-                "count_indoor_24_warm","count_indoor_26_warm",
-                "count_indoor_HI_26.7_warm"),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "DP3/RV1_sensitivity/04_indoor_26℃",
-  log_transformed_outcome = FALSE)
-################################################################################
-
-
-
-#-----------------------------------------------------------------------------#
-#                              05 Outdoor Heat wave                           #
+#                              04 Outdoor Heat wave                           #
 #-----------------------------------------------------------------------------#
 #######################
 ### 1) Neurosonography ###
@@ -492,7 +500,7 @@ results <- run_mixed_models(
 
 
 #-----------------------------------------------------------------------------#
-#                      06 Threshold: Moving window 15day                      #
+#                      05 Threshold: Moving window 15day                      #
 #-----------------------------------------------------------------------------#
 #######################
 ### 1) Neurosonography ###
@@ -539,7 +547,7 @@ results <- run_mixed_models(
 
 
 #-----------------------------------------------------------------------------#
-#                               07 Multiple Tests                             #
+#                               06 Multiple Tests                             #
 #-----------------------------------------------------------------------------#
 #######################
 ### 1) Neurosonography ###

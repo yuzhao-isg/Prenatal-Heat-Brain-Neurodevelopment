@@ -401,8 +401,12 @@ calculate_heatwave <- function(data, heat_var) {
   result <- episodes %>%
     group_by(ID) %>%
     summarise(
-      HW2 = as.integer(any(episode_days >= 2)),
-      HW2_days = sum(episode_days[episode_days >= 2]),
+      # 0/1
+      heatwave_2 = as.integer(any(heatwave_days >= 2)),
+      # number od heat wave
+      heatwave_n_2 = sum(heatwave_days >= 2),
+      # number of heat wave days
+      heatwave_days_2 = sum(heatwave_days[heatwave_days >= 2],na.rm = TRUE),
       .groups = "drop"
     ) %>%
     right_join(all_ids, by = setNames("ID", id_var)) %>%
@@ -412,6 +416,7 @@ calculate_heatwave <- function(data, heat_var) {
     ) %>%
     rename(
       !!paste0(heat_var, "_HW2") := HW2,
+      !!paste0(heat_var, "_HW2_n") := HW2_n,
       !!paste0(heat_var, "_HW2_days") := HW2_days
     )
   

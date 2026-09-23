@@ -41,111 +41,60 @@ load("output/DP3_28m.RData")
 load("neurosonography_transvaginal.RData")
 load("DP3_28m_covariates_imputed.RData")
 
-#---- INDEX ----------------------------------------------------------------                      
-# 01) Alternative Heat Definition: 
-#     Supplementary Table 2. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy using alternative definitions. a. Heat index–based exposures (90th and 99th percentiles); b. Temperature-based exposures (90th and 99th percentiles)
-#     Supplementary Table 18. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy using alternative definitions. a. Heat index–based exposures (90th and 99th percentiles); b. Temperature-based exposures (90th and 99th percentiles)
+#---- INDEX ----------------------------------------------------------------
+# 01) Complete Samples
+#     Supplementary Table 2. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy using all complete cases.
+#     Supplementary Table 17. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy using all complete cases.
 
-# 02) Complete Samples
-#     Supplementary Table 3. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy using all complete cases.
-#     Supplementary Table 19. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy using all complete cases.
+# 02) Remove Participants with Prenatal Complication
+#     Supplementary Table 3. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy using the samples without prenatal complications and preterm birth. 
+#     Supplementary Table 18. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy using the samples without prenatal complications and preterm birth.
 
-# 03) Further Adjust Passive Smoking
-#     Supplementary Table 4. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy further adjusting for passive smoking during pregnancy. 
-#     Supplementary Table 20. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy further adjusting for passive smoking during pregnancy. 
+# 03) IPW Analysis
+#      Supplementary Table 4. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy using inverse probability of censoring weights to account for loss to follow-up. 
+#      Supplementary Table 19. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy using inverse probability of censoring weights to account for loss to follow-up.
 
-# 04) Further Adjust Parity
-#     Supplementary Table 5. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy further adjusting for parity. 
-#     Supplementary Table 21. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy further adjusting for parity. 
+# 04) Alternative Heat Definition: 
+#     Supplementary Table 5. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy using alternative definitions. a. Heat index–based exposures (90th and 99th percentiles); b. Temperature-based exposures (90th and 99th percentiles)
+#     Supplementary Table 20. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy using alternative definitions. a. Heat index–based exposures (90th and 99th percentiles); b. Temperature-based exposures (90th and 99th percentiles)
 
-# 05) Further Adjust Air Pollution
-#     Supplementary Table 7. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy further adjusting for prenatal air pollution (i.e., fine particulate matter and nitrogen dioxide).
-#     Supplementary Table 23. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy further adjusting for prenatal air pollution (i.e., fine particulate matter and nitrogen dioxide).
+# 05) Further Adjust Passive Smoking
+#     Supplementary Table 11. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for passive smoking during pregnancy. 
+#     Supplementary Table 26. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for passive smoking during pregnancy. 
 
-# 06) Remove Participants with Prenatal Complication
-#     Supplementary Table 9. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy using the samples without prenatal complications and preterm birth. 
-#     Supplementary Table 25. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy using the samples without prenatal complications and preterm birth.
+# 06) Further Adjust Parity
+#     Supplementary Table 12. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for parity. 
+#     Supplementary Table 27. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for parity. 
 
-# 07) Further Adjust BDP - ONLY FOR Neurosonography  
-#     Supplementary Table 8. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy further adjusting for biparietal diameter.
+# 07) Further Adjust Air Pollution
+#     Supplementary Table 14. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for prenatal air pollution (i.e., fine particulate matter and nitrogen dioxide).
+#     Supplementary Table 29. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for prenatal air pollution (i.e., fine particulate matter and nitrogen dioxide).
 
-# 08) Further Adjust Maternal Cognition - ONLY FOR DP3  
-#     Supplementary Table 24. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy further adjusting maternal cognitive performance.
+# 08) Further Adjust BDP - ONLY FOR Neurosonography  
+#     Supplementary Table 15. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for biparietal diameter.
 
-# 09) Further Adjust Postnatal Heat  - ONLY FOR DP3    
-#     Supplementary Table 27. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy further adjusting for postnatal heat exposure (number of heat days until DP-3 assessment).
+# 09) Further Adjust Maternal Cognition - ONLY FOR DP3  
+#     Supplementary Table 30. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting maternal cognitive performance.
 
-# 10) Excluding Gestational Age 
-#     Supplementary Table 26. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy excluding gestational age as a covariate.
+# 10) Further Adjust Postnatal Heat  - ONLY FOR DP3    
+#     Supplementary Table 32. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy further adjusting for postnatal heat exposure (number of heat days until DP-3 assessment).
 
-# 11) External_Standardize Score - ONLY FOR DP3
-#      Supplementary Table 28. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy using the external-standardized scores instead of cohort-specific standardized scores.
+# 11) Excluding Gestational Age 
+#     Supplementary Table 31. Adjusteda difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy excluding gestational age as a covariate.
 
-# 12) IPW Analysis
-#      Supplementary Table 10. Adjusted percent differences in brain morphological structures associated with the number of indoor and outdoor heat days during pregnancy using inverse probability of censoring weights to account for loss to follow-up. 
-#      Supplementary Table 29. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat days during pregnancy using inverse probability of censoring weights to account for loss to follow-up.
+# 12) External_Standardize Score - ONLY FOR DP3
+#      Supplementary Table 33. Adjusted difference in postnatal neurodevelopment score associated with the number of indoor and outdoor heat-exposure days during pregnancy using the external-standardized scores instead of cohort-specific standardized scores.
 
 # 13) Further Adjust Passive Smoking,  Active Smoking,  Alcohol Consumption - ONLY FOR Sub-study 3
-#      Supplementary Table 37. The association between fetal brain morphology and postnatal neurodevelopment was further adjusted for passive smoking during pregnancy*. a. Cortical folding depth; b. Cerebrospinal fluid spaces width; c. Other
-#      Supplementary Table 38. The association between fetal brain morphology and postnatal neurodevelopment was further adjusted for active smoking during pregnancy*. a. Cortical folding depth; b. Cerebrospinal fluid spaces width; c. Other
-#      Supplementary Table 39. The association between fetal brain morphology and postnatal neurodevelopment was further adjusted for alcohol consumption during pregnancy*. a. Cortical folding depth; b. Cerebrospinal fluid spaces width; c. Other
+#      Supplementary Table 35. The association between fetal brain morphology and postnatal neurodevelopment was further adjusted for passive smoking during pregnancy*. a. Cortical folding depth; b. Cerebrospinal fluid spaces width; c. Other
+#      Supplementary Table 36. The association between fetal brain morphology and postnatal neurodevelopment was further adjusted for active smoking during pregnancy*. a. Cortical folding depth; b. Cerebrospinal fluid spaces width; c. Other
+#      Supplementary Table 37. The association between fetal brain morphology and postnatal neurodevelopment was further adjusted for alcohol consumption during pregnancy*. a. Cortical folding depth; b. Cerebrospinal fluid spaces width; c. Other
 #---------------------------------------------------------------------------
 
 setwd("~/results/Sensitivity_results/")
 
 #-----------------------------------------------------------------------------#
-#                    01 Alternative Heat Definition                           #
-#-----------------------------------------------------------------------------#
-
-#######################
-### 1) Neurosonography ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_Neurosonography_mixed,
-  exposures = c("count_heat_exposure_90_home","count_HI_exposure_90_home",
-                "log2_count_heat_exposure_90_indoor_day","log2_count_HI_exposure_90_indoor_day",
-                "count_heat_exposure_99_home","count_HI_exposure_99_home",
-                "log2_count_heat_exposure_99_indoor_day","log2_count_HI_exposure_99_indoor_day"
-  ),
-  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
-               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
-               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
-               "log_cingulate_sulcus", "log_insula"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
-                 "ns(as.numeric(conception_date), df = 12)"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "Neurosonography/01_heat_definition/",
-  log_transformed_outcome = TRUE)
-
-#######################
-### 2)    DP3    ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_90_home","count_HI_exposure_90_home",
-                "log2_count_heat_exposure_90_indoor_day","log2_count_HI_exposure_90_indoor_day",
-                "count_heat_exposure_99_home","count_HI_exposure_99_home",
-                "log2_count_heat_exposure_99_indoor_day","log2_count_HI_exposure_99_indoor_day"
-  ),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "DP3/01_heat_definition/",
-  log_transformed_outcome = FALSE)
-
-################################################################################
-
-
-#-----------------------------------------------------------------------------#
-#                                 02_Complete Samples                         #
+#                                 01_Complete Samples                         #
 #-----------------------------------------------------------------------------#
 
 #######################
@@ -178,7 +127,7 @@ results <- run_mixed_models(
                  "ns(as.numeric(conception_date), df = 12)"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "/Neurosonography/02_complete_samples/",
+  output_dir = "/Neurosonography/01_complete_samples/",
   log_transformed_outcome = TRUE)
 
 #######################
@@ -209,154 +158,14 @@ results <- run_mixed_models(
                  "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "DP3/02_complete_samples/",
+  output_dir = "DP3/01_complete_samples/",
   log_transformed_outcome = FALSE)
 
 ################################################################################
 
 
 #-----------------------------------------------------------------------------#
-#                         03_Further Adjust Passive Smoking                   #
-#-----------------------------------------------------------------------------#
-
-#######################
-### 1) Neurosonography ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_Neurosonography_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
-               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
-               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
-               "log_cingulate_sulcus", "log_insula"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
-                 "ns(as.numeric(conception_date), df = 12)", "Passive_smok_any"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "Neurosonography/03_adjust_passive_smoking/",
-  log_transformed_outcome = TRUE)
-
-#######################
-### 2)    DP3    ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)","Passive_smok_any"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "DP3_28m/03_adjust_passive_smoking/",
-  log_transformed_outcome = FALSE)
-
-
-################################################################################
-
-#-----------------------------------------------------------------------------#
-#                             04_Further Adjust Parity                        #
-#-----------------------------------------------------------------------------#
-
-#######################
-### 1) Neurosonography ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_Neurosonography_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
-               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
-               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
-               "log_cingulate_sulcus", "log_insula"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
-                 "ns(as.numeric(conception_date), df = 12)", "parity_m_2cat"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "Neurosonography/04_adjust_parity/",
-  log_transformed_outcome = TRUE)
-
-#######################
-### 2)    DP3    ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)","parity_m_2cat"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "DP3/04_adjust_parity/",
-  log_transformed_outcome = FALSE)
-
-################################################################################
-
-#-----------------------------------------------------------------------------#
-#                       05_Further Adjust Air Pollution                       #
-#-----------------------------------------------------------------------------#
-
-#######################
-### 1) Neurosonography ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_Neurosonography_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
-               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
-               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
-               "log_cingulate_sulcus", "log_insula"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
-                 "ns(as.numeric(conception_date), df = 12)", "pm25_total_hybrid_32w", "no2_total_hybrid_32w"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "Neurosonography/05_adjust_ap/",
-  log_transformed_outcome = TRUE)
-
-#######################
-### 2)    DP3    ###
-#######################
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "pm25_total_hybrid_0y","no2_total_hybrid_0y"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/05_adjust_ap/",
-  log_transformed_outcome = FALSE)
-
-###############################################################################
-
-
-#-----------------------------------------------------------------------------#
-#                06_Remove Participants with Prenatal Complication            #
+#                02_Remove Participants with Prenatal Complication            #
 #-----------------------------------------------------------------------------#
 
 #######################
@@ -388,7 +197,7 @@ results <- run_mixed_models(
                  "ns(as.numeric(conception_date), df = 12)"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "Neurosonography/06_remove_prenatal_complication/",
+  output_dir = "Neurosonography/02_remove_prenatal_complication/",
   log_transformed_outcome = TRUE)
 
 #######################
@@ -417,168 +226,14 @@ results <- run_mixed_models(
                  "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "DP3/06_remove_prenatal_complication/",
-  log_transformed_outcome = FALSE)
-
-###############################################################################
-
-#-----------------------------------------------------------------------------#
-#               07_Further Adjust BDP - ONLY FOR Neurosonography              #
-#-----------------------------------------------------------------------------#
-
-results <- run_mixed_models(
-  data = Heat_Neurosonography_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
-               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
-               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
-               "log_cingulate_sulcus", "log_insula"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
-                 "ns(as.numeric(conception_date), df = 12)","BDP"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/Neurosonography/07_adjust_BDP/",
-  log_transformed_outcome = TRUE)
-
-###############################################################################
-
-
-#-----------------------------------------------------------------------------#
-#              08_Further Adjust Maternal Cognition - ONLY FOR DP3            #
-#-----------------------------------------------------------------------------#
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)","pma_tcorrect_m_32w"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/08_adjust_maternal_cognition/",
+  output_dir = "DP3/02_remove_prenatal_complication/",
   log_transformed_outcome = FALSE)
 
 ###############################################################################
 
 
 #-----------------------------------------------------------------------------#
-#                09_Further Adjust Postnatal Heat  - ONLY FOR DP3             #
-#-----------------------------------------------------------------------------#
-Heat_DP3_28m_mixed <- Heat_DP3_28m_mixed %>%
-  left_join(DP3_heat_day_count, by = "id_mother") 
-
-# outdoor_T
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home"),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_heat_exposure_95_home"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/09_adjust_postnatal_heat/",
-  log_transformed_outcome = FALSE)
-
-# outdoor_HI
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_HI_exposure_95_home"),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_HI_exposure_95_home"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/09_adjust_postnatal_heat/",
-  log_transformed_outcome = FALSE)
-
-# Indoor_T
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("log2_count_heat_exposure_95_indoor_day"),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_heat_exposure_95_indoor_day"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/09_adjust_postnatal_heat/",
-  log_transformed_outcome = FALSE)
-
-# Indoor_HI
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("log2_count_HI_exposure_95_indoor_day"),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_HI_exposure_95_indoor_day"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/09_adjust_postnatal_heat/",
-  log_transformed_outcome = FALSE)
-
-
-###############################################################################
-
-
-#-----------------------------------------------------------------------------#
-#                  10_Excluding Gestational Age - ONLY FOR DP3                #
-#-----------------------------------------------------------------------------#
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
-               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", 
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "/DP3/10_exclude_GA/",
-  log_transformed_outcome = FALSE)
-
-###############################################################################
-
-#-----------------------------------------------------------------------------#
-#               11_External_Standardize Score - ONLY FOR DP3                  #
-#-----------------------------------------------------------------------------#
-
-results <- run_mixed_models(
-  data = Heat_DP3_28m_mixed,
-  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
-                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
-  ),
-  outcomes = c("pt_global_development_score","pt_motricity_score","pt_adaptive_behaviour_score",
-               "pt_socioemotional_score","pt_congnition_score","pt_communication_score"),
-  covariates = c("sex_0y_c", "Active_smok_any", "gestage_0y_c_weeks", "ethnicity_c_2cat",
-                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
-                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
-  random_effects = "(1|hosp_recruit_m_12w)",
-  family = "gaussian",
-  output_dir = "DP3/11_external_standardize/",
-  log_transformed_outcome = FALSE)
-
-###############################################################################
-
-
-#-----------------------------------------------------------------------------#
-#                                12_IPW Analysis                              #
+#                                03_IPW Analysis                              #
 #-----------------------------------------------------------------------------#
 
 ##### FUNCTION 
@@ -753,7 +408,7 @@ results <- run_mixed_models_csv_IPW(
                  "ns(as.numeric(conception_date), df = 12)"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "Neurosonography/12_IPW/",
+  output_dir = "Neurosonography/03_IPW/",
   log_transformed_outcome = TRUE)
 
 ################################################################################
@@ -806,9 +461,355 @@ results <- run_mixed_models_csv_IPW(
                  "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
   random_effects = "(1|hosp_recruit_m_12w)",
   family = "gaussian",
-  output_dir = "DP3/12_IPW/",
+  output_dir = "DP3/03_IPW/",
   log_transformed_outcome = FALSE)
 ################################################################################
+
+
+#-----------------------------------------------------------------------------#
+#                    04 Alternative Heat Definition                           #
+#-----------------------------------------------------------------------------#
+
+#######################
+### 1) Neurosonography ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_heat_exposure_90_home","count_HI_exposure_90_home",
+                "log2_count_heat_exposure_90_indoor_day","log2_count_HI_exposure_90_indoor_day",
+                "count_heat_exposure_99_home","count_HI_exposure_99_home",
+                "log2_count_heat_exposure_99_indoor_day","log2_count_HI_exposure_99_indoor_day"
+  ),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Neurosonography/04_heat_definition/",
+  log_transformed_outcome = TRUE)
+
+#######################
+### 2)    DP3    ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_90_home","count_HI_exposure_90_home",
+                "log2_count_heat_exposure_90_indoor_day","log2_count_HI_exposure_90_indoor_day",
+                "count_heat_exposure_99_home","count_HI_exposure_99_home",
+                "log2_count_heat_exposure_99_indoor_day","log2_count_HI_exposure_99_indoor_day"
+  ),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "DP3/04_heat_definition/",
+  log_transformed_outcome = FALSE)
+
+################################################################################
+
+
+#-----------------------------------------------------------------------------#
+#                         05_Further Adjust Passive Smoking                   #
+#-----------------------------------------------------------------------------#
+
+#######################
+### 1) Neurosonography ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)", "Passive_smok_any"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Neurosonography/05_adjust_passive_smoking/",
+  log_transformed_outcome = TRUE)
+
+#######################
+### 2)    DP3    ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)","Passive_smok_any"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "DP3_28m/05_adjust_passive_smoking/",
+  log_transformed_outcome = FALSE)
+
+
+################################################################################
+
+#-----------------------------------------------------------------------------#
+#                             06_Further Adjust Parity                        #
+#-----------------------------------------------------------------------------#
+
+#######################
+### 1) Neurosonography ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)", "parity_m_2cat"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Neurosonography/06_adjust_parity/",
+  log_transformed_outcome = TRUE)
+
+#######################
+### 2)    DP3    ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)","parity_m_2cat"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "DP3/06_adjust_parity/",
+  log_transformed_outcome = FALSE)
+
+################################################################################
+
+#-----------------------------------------------------------------------------#
+#                       07_Further Adjust Air Pollution                       #
+#-----------------------------------------------------------------------------#
+
+#######################
+### 1) Neurosonography ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)", "pm25_total_hybrid_32w", "no2_total_hybrid_32w"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "Neurosonography/07_adjust_ap/",
+  log_transformed_outcome = TRUE)
+
+#######################
+### 2)    DP3    ###
+#######################
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "pm25_total_hybrid_0y","no2_total_hybrid_0y"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/07_adjust_ap/",
+  log_transformed_outcome = FALSE)
+
+###############################################################################
+
+
+#-----------------------------------------------------------------------------#
+#               08_Further Adjust BDP - ONLY FOR Neurosonography              #
+#-----------------------------------------------------------------------------#
+
+results <- run_mixed_models(
+  data = Heat_Neurosonography_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("log_anterior_ventricle", "log_posterior_ventricle", "log_trans_cerebellar_d",
+               "log_vermis", "log_cisterna_magna", "log_third_ventricle", "log_corpus_callosum",
+               "log_parieto_occipital_sulcus", "log_sylvian_fissure", "log_calcarine_sulcus",
+               "log_cingulate_sulcus", "log_insula"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestational_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu",
+                 "ns(as.numeric(conception_date), df = 12)","BDP"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/Neurosonography/07_adjust_BDP/",
+  log_transformed_outcome = TRUE)
+
+###############################################################################
+
+
+#-----------------------------------------------------------------------------#
+#              09_Further Adjust Maternal Cognition - ONLY FOR DP3            #
+#-----------------------------------------------------------------------------#
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)","pma_tcorrect_m_32w"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/08_adjust_maternal_cognition/",
+  log_transformed_outcome = FALSE)
+
+###############################################################################
+
+
+#-----------------------------------------------------------------------------#
+#                10_Further Adjust Postnatal Heat  - ONLY FOR DP3             #
+#-----------------------------------------------------------------------------#
+Heat_DP3_28m_mixed <- Heat_DP3_28m_mixed %>%
+  left_join(DP3_heat_day_count, by = "id_mother") 
+
+# outdoor_T
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home"),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_heat_exposure_95_home"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/10_adjust_postnatal_heat/",
+  log_transformed_outcome = FALSE)
+
+# outdoor_HI
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_HI_exposure_95_home"),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_HI_exposure_95_home"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/10_adjust_postnatal_heat/",
+  log_transformed_outcome = FALSE)
+
+# Indoor_T
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("log2_count_heat_exposure_95_indoor_day"),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_heat_exposure_95_indoor_day"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/10_adjust_postnatal_heat/",
+  log_transformed_outcome = FALSE)
+
+# Indoor_HI
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("log2_count_HI_exposure_95_indoor_day"),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", "gestage_0y_c_weeks", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)", "count_post_HI_exposure_95_indoor_day"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/10_adjust_postnatal_heat/",
+  log_transformed_outcome = FALSE)
+
+
+###############################################################################
+
+
+#-----------------------------------------------------------------------------#
+#                  11_Excluding Gestational Age - ONLY FOR DP3                #
+#-----------------------------------------------------------------------------#
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("ptc_global_development_score","ptc_motricity_score","ptc_adaptive_behaviour_score",
+               "ptc_socioemotional_score","ptc_congnition_score","ptc_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "ethnicity_c_2cat", 
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "/DP3/11_exclude_GA/",
+  log_transformed_outcome = FALSE)
+
+###############################################################################
+
+#-----------------------------------------------------------------------------#
+#               12_External_Standardize Score - ONLY FOR DP3                  #
+#-----------------------------------------------------------------------------#
+
+results <- run_mixed_models(
+  data = Heat_DP3_28m_mixed,
+  exposures = c("count_heat_exposure_95_home","count_HI_exposure_95_home",
+                "log2_count_heat_exposure_95_indoor_day","log2_count_HI_exposure_95_indoor_day"
+  ),
+  outcomes = c("pt_global_development_score","pt_motricity_score","pt_adaptive_behaviour_score",
+               "pt_socioemotional_score","pt_congnition_score","pt_communication_score"),
+  covariates = c("sex_0y_c", "Active_smok_any", "gestage_0y_c_weeks", "ethnicity_c_2cat",
+                 "age_12w_m", "Alcohol_any", "educ_level_m_2cat", "ses_income_acu","dp3_age_28m",
+                 "endbf_18m", "ns(as.numeric(conception_date), df = 12)"),
+  random_effects = "(1|hosp_recruit_m_12w)",
+  family = "gaussian",
+  output_dir = "DP3/12_external_standardize/",
+  log_transformed_outcome = FALSE)
+
+###############################################################################
 
 
 #-----------------------------------------------------------------------------#
