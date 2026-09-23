@@ -15,7 +15,7 @@ The R scripts are organized in the approximate order of the analysis workflow. T
 | Script | Purpose |
 | --- | --- |
 | `01_prepare_data.R` | Loads outcome and covariate data; selects and renames variables; imputes missing values for important covariates; and creates the final analysis dataset. |
-| `02_exposure_data.R` | Calculates daily heat Iidex from temperature and humidity, identifies heat-exposure days using temperature and heat index thresholds, and counts the total number of heat-exposure days for each participant over the whole pregnancy and through the ultrasound date. Calculats the number of outdoor heatwaves during the whole pregnancy. |
+| `02_exposure_data.R` | Calculates daily heat index from temperature and humidity, identifies heat-exposure days using temperature and heat index thresholds, and counts the total number of heat-exposure days for each participant over the whole pregnancy and through the ultrasound date. Calculats the number of outdoor heatwaves during the whole pregnancy. |
 | `03_GAM.R` | Fits generalized additive models to assess whether associations between prenatal heat exposure and study outcomes is linearity. |
 | `04_function_LMM_csv.R` | Defines functions for mixed-effects regression analyses, extraction of coefficients, standard errors, confidence intervals and p-values, and export of results as CSV files. |
 | `05_main_results.R` | Runs the main analyses for Substudies 1–3 and generates forest plots of effect estimates and 95% confidence intervals across exposures and substudies. |
